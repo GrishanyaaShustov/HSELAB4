@@ -48,6 +48,7 @@ class Program
     
     static void Main(string[] arg)
     {
+        Console.WriteLine(-10 % 3);
         PrintHelpPanel();
         
         Random random = new Random();
@@ -175,7 +176,7 @@ class Program
                     else
                     {
                         int moveOn = EnterIntNum(moveOnDict) % array.Length;
-                        if (moveOn == 0 || array.Length == 1) Console.WriteLine("При данных параметрах при осуществлении сдвига ничего не изменится.");
+                        if (moveOn <= 0 || array.Length == 1) Console.WriteLine("При данных параметрах нельзя осуществить сдвиг массива.");
                         else
                         {
                             int[] tempArray = new int[moveOn];

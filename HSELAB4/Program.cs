@@ -94,11 +94,11 @@ class Program
                             }
                         }
                         isArrayCreated = true;
+                        
                         break;
                     }
                     
                 case 2:
-                    
                     if(!isArrayCreated) Console.WriteLine("Прежде чем выполнять действия с масивом создайте его.");
                     else
                     {
@@ -142,6 +142,7 @@ class Program
                         array = tempArray;
                         Console.WriteLine($"Минимальный элемент {minElem}, на позиции {minIndex+1} - удален из массива.");
                     }
+                    
                     break;
                 
                 case 4:
@@ -228,7 +229,9 @@ class Program
 
                         Console.WriteLine("Массив успешно отсортирован!\n");
                     }
+                    
                     break;
+                    
                 case 8:
                     if(!isArrayCreated) Console.WriteLine("Прежде чем выполнять действия с масивом создайте его.");
                     else if(array.Length == 0) Console.WriteLine("Нельзя найти элемент в массиве нулевой длины.");

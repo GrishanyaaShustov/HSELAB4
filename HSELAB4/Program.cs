@@ -48,17 +48,13 @@ class Program
     
     static void Main(string[] arg)
     {
-        Console.WriteLine(-10 % 3);
         PrintHelpPanel();
         
         Random random = new Random();
         
         bool isGoing = true;
         bool isArrayCreated = false;
-        int[] array = new int[0]; // колхозно, но зато компилятор не ругается =)
-        int currentAction;
-        int arrayLength = 0;
-        int typeFill;
+        int[] array = new int[0];
         
         Dictionary<int, string> currentActionDict = new() { { 0, "Введите номер действия: " }, { 1, "Введено некорректное действие, попробуйте еще раз." } };
         Dictionary<int, string> arrayLengthDict = new() { { 0, "\nВведите длину массива: " }, { 1, "Введена некорректная длина массива, попробуйте еще раз." } };
@@ -69,11 +65,15 @@ class Program
         
         while (isGoing)
         {
+            int currentAction;
             currentAction = EnterIntNum(currentActionDict);
 
             switch (currentAction)
             {
                 case 1:
+                    int arrayLength = 0;
+                    int typeFill;
+                    
                     arrayLength = EnterIntNum(arrayLengthDict);
                     if (arrayLength < 0)
                     {

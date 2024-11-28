@@ -71,7 +71,7 @@ class Program
             switch (currentAction)
             {
                 case 1:
-                    int arrayLength = 0;
+                    int arrayLength;
                     int typeFill;
                     
                     arrayLength = EnterIntNum(arrayLengthDict);
@@ -236,7 +236,7 @@ class Program
                 case 8:
                     if(!isArrayCreated) Console.WriteLine("Прежде чем выполнять действия с масивом создайте его.");
                     else if(array.Length == 0) Console.WriteLine("Нельзя найти элемент в массиве нулевой длины.");
-                    else if(IsArraySorted(array) == false) Console.WriteLine("Массив не отсортирован, нельзя найти элемент при помощи бинарного поиска.");
+                    else if(!IsArraySorted(array)) Console.WriteLine("Массив не отсортирован, нельзя найти элемент при помощи бинарного поиска.");
                     else
                     {
                         int target = EnterIntNum(enterTargetDict);

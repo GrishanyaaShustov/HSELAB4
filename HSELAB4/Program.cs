@@ -73,9 +73,13 @@ class Program
                 case 1:
                     int arrayLength;
                     int typeFill;
-                    
+
                     arrayLength = EnterIntNum(arrayLengthDict);
-                    if (arrayLength < 0)
+                    if (arrayLength == 0)
+                    {
+                        array = new int[0];
+                    }
+                    else if (arrayLength < 0)
                     {
                         Console.WriteLine("Длина массива не может быть отрицательной, попробуйте еще раз");
                         goto case 1;
@@ -84,20 +88,27 @@ class Program
                     {
                         typeFill = EnterIntNum(arrayFillDict);
                         array = new int[arrayLength];
-                    
-                        if (typeFill >= 0) for (int i = 0; i < arrayLength; i++) array[i] = random.Next(-100, 100);
+
+                        if (typeFill >= 0)
+                        {
+                            for (int i = 0; i < arrayLength; i++)
+                                array[i] = random.Next(-100, 100);
+                        }
                         else
                         {
                             for (int i = 0; i < arrayLength; i++)
                             {
-                                Dictionary<int, string> arrayNumDict = new() { {0, $"Введите элемент массива №{i+1}: "}, {1, $"Число введено неверно, попробуйте еще раз"} };
+                                Dictionary<int, string> arrayNumDict = new()
+                                {
+                                    { 0, $"Введите элемент массива №{i + 1}: " },
+                                    { 1, "Число введено неверно, попробуйте еще раз" }
+                                };
                                 array[i] = EnterIntNum(arrayNumDict);
                             }
                         }
                         isArrayCreated = true;
-                        
-                        break;
                     }
+                    break;
                     
                 case 2:
                     if(!isArrayCreated) Console.WriteLine("Прежде чем выполнять действия с масивом создайте его.");
@@ -151,11 +162,14 @@ class Program
                     else
                     {
                         int countAdd = EnterIntNum(arrayAddElemsDict);
+                        long checkLength = (long)countAdd + array.Length;
+                        
                         if (countAdd < 0)
                         {
                             Console.WriteLine("Нельзя добавить в конец массива отрицательное количество элементов, попробуйте еще раз.");
                             goto case 4;
                         }
+                        else if(checkLength > Int32.MaxValue) Console.WriteLine("Длина массива не может превышать тип Int32");
                         else
                         {
                             int[] tempArray = new int[array.Length + countAdd];

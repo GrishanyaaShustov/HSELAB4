@@ -1,6 +1,6 @@
 ﻿
 namespace HSELAB4;
-
+//2147483647
 class Program
 {
 
@@ -78,10 +78,16 @@ class Program
                     if (arrayLength == 0)
                     {
                         array = new int[0];
+                        isArrayCreated = true;
                     }
                     else if (arrayLength < 0)
                     {
                         Console.WriteLine("Длина массива не может быть отрицательной, попробуйте еще раз");
+                        goto case 1;
+                    }
+                    else if (arrayLength > 1000)
+                    {
+                        Console.WriteLine("Длина массива не может превышать 1000 элементов, попробуйте еще раз");
                         goto case 1;
                     }
                     else
@@ -112,16 +118,11 @@ class Program
                     
                 case 2:
                     if(!isArrayCreated) Console.WriteLine("Прежде чем выполнять действия с масивом создайте его.");
+                    else if (array.Length == 0) Console.WriteLine("Массив имеет нулевую длину.");
                     else
                     {
-                        for(int i = 0; i < array.Length; i++)
-                        {
-                            Console.Write(array[i] + " ");
-                        }
-
-                        Console.WriteLine("\n");
+                        Console.WriteLine(String.Join(" ", array));
                     }
-
                     break;
                 
                 case 3:
@@ -162,14 +163,14 @@ class Program
                     else
                     {
                         int countAdd = EnterIntNum(arrayAddElemsDict);
-                        long checkLength = (long)countAdd + array.Length;
+                        int checkLength = countAdd + array.Length;
                         
                         if (countAdd < 0)
                         {
                             Console.WriteLine("Нельзя добавить в конец массива отрицательное количество элементов, попробуйте еще раз.");
                             goto case 4;
                         }
-                        else if(checkLength > Int32.MaxValue) Console.WriteLine("Длина массива не может превышать тип Int32");
+                        else if(checkLength > 1000) Console.WriteLine($"Длина массива не может превышать 1000 элементов, сейчас вы можете добавить в конец массива {1000 - array.Length} элементов");
                         else
                         {
                             int[] tempArray = new int[array.Length + countAdd];
@@ -182,7 +183,6 @@ class Program
                             array = tempArray;
                         }
                     }
-                    
                     break;
                 
                 case 5:
